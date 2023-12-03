@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin To-Do</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="../dist/main.js"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <div class="header">
+        <img class="icon primary-filter" id="header-button" src="./images/icon-sidebar.svg" alt="sideBar button">
+        <div class="title">Odin To-Do</div>
+    </div>
+
+    <!-- Sidebar-->
+
+    <div class="sidebar">
+        <div class="sidebar-top">
+            <div class="sidebar-top-item" id="add-task-button">
+                <img class="icon primary-filter" src="./images/icon-add.svg" alt="add-icon">
+                <div class="sidebar-title">Add task</div>
+            </div>
+            <div class="sidebar-top-item selected">
+                <img class="icon primary-filter" src="./images/icon-inbox-outline.svg" alt="icon-inbox">
+                <div class="sidebar-title">Inbox</div>
+            </div>
+            <div class="sidebar-top-item">
+                <img class="icon primary-filter" src="./images/icon-today-outline.svg" alt="icon-today">
+                <div class="sidebar-title">Today</div>
+            </div>
+            <div class="sidebar-top-item">
+                <img class="icon primary-filter" src="./images/icon-upcoming-outline.svg" alt="icon-upcoming">
+                <div class="sidebar-title">Upcoming</div>
+            </div>
+        </div>
+        <div class="sidebar-bot">
+            <div class="sidebar-bot-header">
+                <div class="title">My Projects</div>
+                <img class="icon hoverable" src="./images/icon-add.svg" alt="add-project-button">
+                <img class="icon hoverable" src="./images/icon-down.svg" alt="hide-projects-button">
+            </div>
+
+            <div class="sidebar-content">
+                <div class="sidebar-content-item">
+                    <img class="icon" src="./images/icon-hashtag.svg" alt="hash-tag-icon">
+                    <div class="title">Home</div>
+                    <img class="icon delete hoverable" src="./images/icon-delete-outline.svg" alt="delete-icon">
+                    <img class="icon edit hoverable" src="./images/icon-edit-outline.svg" alt="edit-icon">
+                </div>
+                <div class="sidebar-content-item">
+                    <img class="icon" src="./images/icon-hashtag.svg" alt="hash-tag-icon">
+                    <div class="title">Work</div>
+                    <img class="icon delete hoverable" src="./images/icon-delete-outline.svg" alt="delete-icon">
+                    <img class="icon edit hoverable" src="./images/icon-edit-outline.svg" alt="edit-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content-->
+
+    <div class="main-content">
+        <div id="main-content-header">Inbox</div>
+        <div class="divider"></div>
+        <div id="content"></div>
+    </div>
+</body>
+</html>

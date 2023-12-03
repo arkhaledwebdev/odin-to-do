@@ -198,6 +198,12 @@ body {
   flex: 1;
 }
 
+.selected {
+  background-color: var(--surface-color);
+  color: var(--main-color);
+  font-weight: 600;
+}
+
 /* sidebar bot */
 .sidebar-bot {
   margin-left: 25px;
@@ -265,10 +271,4 @@ body {
 .divider {
   border-top: 2px solid var(--accent-color);
   margin: 10px 20px;
-}
-
-.selected {
-  background-color: var(--surface-color);
-  color: var(--main-color);
-  font-weight: 600;
 }
