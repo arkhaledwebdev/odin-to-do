@@ -35,7 +35,8 @@
                 <div class="sidebar-title">Today</div>
             </div>
             <div class="sidebar-top-item" id="upcoming-container">
-                <img id="img-upcoming" class="icon primary-filter" src="./images/icon-upcoming-outline.svg" alt="icon-upcoming">
+                <img id="img-upcoming" class="icon primary-filter" src="./images/icon-upcoming-outline.svg"
+                    alt="icon-upcoming">
                 <div class="sidebar-title">Upcoming</div>
             </div>
         </div>
@@ -70,5 +71,47 @@
         <div class="divider"></div>
         <div id="content"></div>
     </div>
+
+    <!-- Add task dialog & forn-->
+
+    <dialog id="add-task-dialog">
+        <form id="add-task-form">
+            <div class="form-item">
+                <label class="form-label" for="form-task-name">Task name:</label>
+                <input class="form-input" type="text" name="task-name" id="form-task-name" required>
+            </div>
+            <div class="form-item">
+                <label class="form-label" for="form-task-date">Date:</label>
+                <input class="form-input" type="date" name="task-date" id="form-task-date" required>
+            </div>
+
+            <div class="form-item">
+                <label class="form-label" for="priority-radio-group">Priority:</label>
+                <div class="form-input" id="priority-radio-group">
+                    <input type="radio" id="task-priority-low" name="priority" value="low"/>
+                    <label for="task-priority-low">Low</label>
+
+                    <input type="radio" id="task-priority-medium" name="priority" value="medium"/>
+                    <label for="task-priority-medium">Medium</label>
+
+                    <input type="radio" id="task-priority-high" name="priority" value="high"/>
+                    <label for="task-priority-high">High</label>
+
+                    <input type="radio" id="task-priority-highest" name="priority" value="highest"/>
+                    <label for="task-priority-highest">Highest</label>
+                </div>
+            </div>
+            <div class="form-item description">
+                <label class="form-label" for="form-task-description" id="description-label">Description:</label>
+                <input class="form-input" type="text" name="task-description" id="form-task-description" required>
+            </div>
+
+            <div id="form-buttons-container">
+                <button class="button-discard" id="discardButton" value="Cancel" formmethod="dialog">Discard</button>
+                <button class="button-confirm" id="confirmButton" type="submit" value="default">Add Task</button>
+            </div>
+        </form>
+    </dialog>
 </body>
+
 </html>

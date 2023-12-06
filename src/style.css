@@ -272,3 +272,49 @@ body {
   border-top: 2px solid var(--accent-color);
   margin: 10px 20px;
 }
+
+/* Add task dialog */
+
+#add-task-dialog {
+  background-color: var(--surface-color);
+  border-radius: 6px;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#add-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form-label {
+  width: 100px;
+}
+
+.form-input {
+  width: 350px;
+  flex: 1;
+}
+
+#form-task-description {
+  min-height: 100px;
+}
+
+#priority-radio-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
