@@ -117,9 +117,10 @@ body {
     padding: 0;
     width: 100vW;
     height: 100vh;
+    font-size: 20px;
     font-family: 'Poppins','Courier New', Courier, monospace;
     display: grid;
-    grid-template-columns: 20vw auto;
+    grid-template-columns: 25vw auto;
     grid-template-rows: 10vh auto;
 }
 
@@ -145,13 +146,13 @@ body {
 }
 
 .header > .title {
-  font-size: 40px;
+  font-size: 2rem;
   font-weight: 900;
   color: var(--main-color);
 }
 
 .header > .icon {
-  width: 50px;
+  width: 40px;
 }
 
 .header > .icon:hover{
@@ -193,7 +194,7 @@ body {
 }
 
 .sidebar-top-item > .sidebar-title {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-left: 20px;
   flex: 1;
 }
@@ -220,7 +221,8 @@ body {
 }
 
 .sidebar-bot-header > .title {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
   flex: 1;
 }
 
@@ -250,7 +252,7 @@ body {
 
 .sidebar-content-item > .title {
   flex: 1;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 /* Main Content */
@@ -299,11 +301,11 @@ body {
 }
 
 .form-label {
-  width: 100px;
+  width: 10vw;
 }
 
 .form-input {
-  width: 350px;
+  width: 30vw;
   flex: 1;
 }
 
@@ -317,4 +319,33 @@ body {
   gap: 10px;
   justify-content: center;
   align-items: center;
+}
+
+#form-buttons-container {
+  justify-self: center;
+  align-self: flex-end;
+}
+
+.button-discard {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: black;
+}
+
+
+.button-discard:hover {
+  background-color: lightgrey;
+}
+
+.button-confirm {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-confirm:hover {
+  background-color: var(--main-color);
 }
