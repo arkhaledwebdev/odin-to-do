@@ -39,6 +39,12 @@
                     alt="icon-upcoming">
                 <div class="sidebar-title">Upcoming</div>
             </div>
+
+            <div class="sidebar-top-item" id="completed-container">
+                <img id="img-completed" class="icon primary-filter" src="./images/icon-checked-outline.svg"
+                    alt="icon-completed">
+                <div class="sidebar-title">Completed</div>
+            </div>
         </div>
         <div class="sidebar-bot">
             <div class="sidebar-bot-header">
@@ -86,7 +92,7 @@
             </div>
 
             <div class="form-item">
-                <label class="form-label" for="priority-radio-group">Priority:</label>
+                <div class="form-label">Priority:</div>
                 <div class="form-input" id="priority-radio-group">
                     <input type="radio" id="task-priority-low" name="priority" value="low"/>
                     <label for="task-priority-low">Low</label>
@@ -106,9 +112,20 @@
                 <input class="form-input" type="text" name="task-description" id="form-task-description" required>
             </div>
 
-            <div id="form-buttons-container">
-                <button class="button-discard" id="discardButton" value="Cancel" formmethod="dialog">Discard</button>
-                <button class="button-confirm" id="confirmButton" type="submit" value="default">Add Task</button>
+            <div class="form-footer">
+                <div id="form-location-container">
+                    <label for="form-location">Location</label>
+                <select name="Location" id="form-location">
+                    <option value="Inbox" selected>Inbox</option>
+                    <option value="Home">Home</option>
+                    <option value="Work">Work</option>
+                </select>
+                </div>
+
+                <div id="form-buttons-container">
+                    <button class="button-discard" id="discardButton" value="Cancel" formmethod="dialog">Discard</button>
+                    <button class="button-confirm" id="confirmButton" type="submit" value="default">Add Task</button>
+                </div>
             </div>
         </form>
     </dialog>

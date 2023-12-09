@@ -1,4 +1,14 @@
 /* poppins-regular - latin */
+
+/* poppins-200 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../src/fonts/poppins-v20-latin-200.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Poppins';
@@ -275,6 +285,50 @@ body {
   margin: 10px 20px;
 }
 
+.task-container {
+  display: grid;
+  grid-template-columns: 50px repeat(3,1fr);
+  grid-template-rows: 30px 25px 25px;
+  margin: 20px;
+  gap: 5px;
+  align-items: center;
+  background-color: var(--surface-color);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.task-check {
+  grid-area: 1 / 1 / 4 / 2;
+  width: 25px;
+  height: 25px;
+  accent-color: var(--main-color);
+}
+
+.task-name {
+  grid-area: 1 / 2 / 2 / 5;
+  font-weight: 600;
+}
+
+.task-description {
+  grid-area: 2 / 2 / 3 / 5;
+  font-weight: 200;
+  font-size: 1rem;
+}
+.task-location {
+  grid-area: 3 / 2 / 4 / 3;
+  font-size: 1rem;
+}
+
+.task-priority {
+  grid-area: 3 / 3 / 4 / 4;
+  font-size: 1rem;
+}
+
+.task-date {
+  grid-area: 3 / 4 / 4 / 5;
+  font-size: 1rem;
+}
+
 /* Add task dialog */
 
 #add-task-dialog {
@@ -321,9 +375,12 @@ body {
   align-items: center;
 }
 
-#form-buttons-container {
-  justify-self: center;
-  align-self: flex-end;
+.form-footer {
+  display: flex;
+  flex-direction: row;
+  align-self: stretch;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .button-discard {
