@@ -1,3 +1,5 @@
+import completeTask from "./completeTask";
+
 export default function createTask(task){
 
 const content = document.getElementById('content');
@@ -12,6 +14,20 @@ checkbox.type = 'checkbox';
 checkbox.name = 'task-check';
 checkbox.classList.add('task-check');
 checkbox.dataset.id = task.id;
+if(task.isChecked){
+    checkbox.checked = true;
+}
+else{
+    checkbox.checked = false;
+}
+checkbox.addEventListener('click',()=>{
+    if(checkbox.checked){
+        completeTask(checkbox.dataset.id, true);
+    }
+    else{
+        completeTask(checkbox.dataset.id, false);
+    }
+})
 
 // Create the task name
 const taskName = document.createElement('div');

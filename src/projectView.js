@@ -1,9 +1,10 @@
 import createTask from "./createTask";
 
-function loadInbox(){
+
+function loadProject(location){
 
     const header_title = document.getElementById('main-content-header');
-    header_title.textContent = "Inbox"
+    header_title.textContent = location;
 
     const content = document.getElementById('content');
     content.replaceChildren();
@@ -12,11 +13,15 @@ function loadInbox(){
 
         Object.keys(localStorage).forEach(key=>{
             if(key != 'taskId'){
-                let task = JSON.parse(localStorage.getItem(key));  
-                createTask(task);  
+                let task = JSON.parse(localStorage.getItem(key));
+
+                if(task.location === location){
+                    createTask(task);  
+                }
             }
         })
     }
+
 }
 
-export {loadInbox}
+export {loadProject}

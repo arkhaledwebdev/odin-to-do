@@ -1,9 +1,10 @@
 import './style.css'
 import html from "./template.html"
-import { loadInbox } from './inbox'
-import { loadToday } from './today'
-import { loadUpcoming } from './upcoming'
-import { loadCompleted } from './completed'
+import { loadInbox } from './inboxView'
+import { loadToday } from './todayView'
+import { loadUpcoming } from './upcomingView'
+import { loadCompleted } from './completedView'
+import { completeTask } from './completeTask'
 import Task from './task'
 import saveTask from './saveTask'
 
@@ -30,8 +31,6 @@ const addTaskForm = document.getElementById('add-task-form');
 const confirmAddTask = document.getElementById('confirmButton');
 const discardAddTask = document.getElementById('discardButton');
 
-
-
 addTaskButton.addEventListener('click',()=>{
     addTaskDialog.showModal();
 })
@@ -44,6 +43,8 @@ discardAddTask.addEventListener('click',(e)=>{
 confirmAddTask.addEventListener('click',()=>{
     confirmAddTask.classList.add('submitted')
 })
+
+loadInbox();
 
 addTaskForm.addEventListener('submit',(e)=>{
     e.preventDefault();
