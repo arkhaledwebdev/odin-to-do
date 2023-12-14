@@ -12,7 +12,7 @@ function loadToday(){
     if(localStorage.getItem("taskId")){
 
         Object.keys(localStorage).forEach(key=>{
-            if(key != 'taskId'){
+            if(key != 'taskId' || !isNaN(key)){
                 let task = JSON.parse(localStorage.getItem(key));
 
                 let date = new Date().toLocaleDateString('en-CA');

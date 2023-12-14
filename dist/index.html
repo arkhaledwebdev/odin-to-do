@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin To-Do</title>
     <link rel="stylesheet" href="57011448dc08b9372b5e.css">
-    <script src="d9b8b287525221c151d1.js" defer></script>
+    <script src="b76deef1abdb919ff604.js" defer></script>
 <script defer src="main.js"></script></head>
 
 <body>
@@ -49,8 +49,8 @@
         <div class="sidebar-bot">
             <div class="sidebar-bot-header">
                 <div class="title">My Projects</div>
-                <img class="icon hoverable" src="3cffe9a515498593b872.svg" alt="add-project-button">
-                <img class="icon hoverable" src="da1d4548b671a011dfa4.svg" alt="hide-projects-button">
+                <img id="add-project-button" class="icon hoverable" src="3cffe9a515498593b872.svg" alt="add-project-button">
+                <img id="hide-projects-button" class="icon hoverable" src="da1d4548b671a011dfa4.svg" alt="hide-projects-button">
             </div>
 
             <div class="sidebar-content">
@@ -123,12 +123,31 @@
                 </div>
 
                 <div id="form-buttons-container">
-                    <button class="button-discard" id="discardButton" value="Cancel" formmethod="dialog">Discard</button>
-                    <button class="button-confirm" id="confirmButton" type="submit" value="default">Add Task</button>
+                    <button class="button-discard" id="discardButton-task" value="Cancel" formmethod="dialog">Discard</button>
+                    <button class="button-confirm" id="confirmButton-task" type="submit" value="default">Add Task</button>
                 </div>
             </div>
         </form>
     </dialog>
+
+     <!-- Add project dialog & forn-->
+
+     <dialog id="add-project-dialog">
+
+        <form id="add-project-form">
+            <div class="form-item">
+                <label class="form-label" for="form-project-name">Project name:</label>
+                <input class="form-input" type="text" name="project-name" id="form-project-name" required>
+            </div>
+        </form>
+
+        <div id="project-buttons-container">
+            <button class="button-discard" id="discardButton-project" value="Cancel" formmethod="dialog">Discard</button>
+            <button class="button-confirm" id="confirmButton-project" type="submit" value="default">Add Project</button>
+        </div>
+
+     </dialog>
+
 </body>
 
 </html>

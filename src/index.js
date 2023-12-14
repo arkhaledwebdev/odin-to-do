@@ -11,11 +11,13 @@ import saveTask from './saveTask'
 import IconInbox from './images/icon-inbox.svg'
 import IconInboxOutline from './images/icon-inbox-outline.svg'
 import IconToday from './images/icon-today.svg'
-import IconTodayOutline  from './images/icon-today-outline.svg'
+import IconTodayOutline from './images/icon-today-outline.svg'
 import IconUpcoming from './images/icon-upcoming.svg'
-import IconUpcomingOutline  from './images/icon-upcoming-outline.svg'
+import IconUpcomingOutline from './images/icon-upcoming-outline.svg'
 import IconCompleted from './images/icon-checked.svg'
 import IconCompletedOutline from './images/icon-checked-outline.svg'
+import saveProject from './saveProject'
+import { loadProjectView, loadProjectSidebar } from './projectView'
 
 const button_inbox = document.getElementById('inbox-container');
 const img_inbox = document.getElementById('img-inbox');
@@ -28,25 +30,43 @@ const img_completed = document.getElementById('img-completed');
 const addTaskButton = document.getElementById('add-task-button');
 const addTaskDialog = document.getElementById('add-task-dialog');
 const addTaskForm = document.getElementById('add-task-form');
-const confirmAddTask = document.getElementById('confirmButton');
-const discardAddTask = document.getElementById('discardButton');
+const confirmAddTask = document.getElementById('confirmButton-task');
+const discardAddTask = document.getElementById('discardButton-task');
+const addProjectButton = document.getElementById('add-project-button');
+const addProjectDialog = document.getElementById('add-project-dialog');
+const addProjectForm = document.getElementById('add-project-form');
+const confirmAddProject = document.getElementById('confirmButton-project');
+const discardAddProject = document.getElementById('discardButton-project');
 
-addTaskButton.addEventListener('click',()=>{
+addTaskButton.addEventListener('click', () => {
     addTaskDialog.showModal();
 })
 
-discardAddTask.addEventListener('click',(e)=>{
+addProjectButton.addEventListener('click', () => {
+    addProjectDialog.showModal();
+})
+
+discardAddTask.addEventListener('click', (e) => {
     e.preventDefault();
     addTaskDialog.close();
 })
 
-confirmAddTask.addEventListener('click',()=>{
-    confirmAddTask.classList.add('submitted')
+discardAddProject.addEventListener('click', (e) => {
+    e.preventDefault();
+    addProjectDialog.close();
 })
+
+confirmAddTask.addEventListener('click', () => {
+    confirmAddTask.classList.add('submitted');
+})
+
+// confirmAddProject.addEventListener('click', () => {
+//     confirmAddProject.classList.add('submitted');
+// })
 
 loadInbox();
 
-addTaskForm.addEventListener('submit',(e)=>{
+addTaskForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     let task = new Task(
@@ -55,28 +75,43 @@ addTaskForm.addEventListener('submit',(e)=>{
         document.querySelector('input[name = "priority"]:checked').value,
         document.getElementById('form-task-description').value,
         document.getElementById('form-location').value
-        );
+    );
 
-        if(confirmAddTask.classList.contains('submitted')){
-            saveTask(task);
+    if (confirmAddTask.classList.contains('submitted')) {
+        saveTask(task);
 
-            loadInbox();
+        loadInbox();
 
-            confirmAddTask.classList.remove('submitted');
+        confirmAddTask.classList.remove('submitted');
 
-        }
+    }
 
-        addTaskDialog.close();
+    addTaskDialog.close();
 })
 
-button_inbox.addEventListener('click', ()=>{
+addProjectForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let projectName = document.getElementById('form-project-name');
+
+    saveProject(projectName);
+
+    //confirmAddProject.classList.remove('submitted');
+
+    loadProjectSidebar();
+    addProjectDialog.close();
+
+})
+
+
+button_inbox.addEventListener('click', () => {
     clearSelection();
     button_inbox.classList.add('selected');
     img_inbox.src = IconInbox;
     loadInbox();
 })
 
-button_today.addEventListener('click', ()=>{
+button_today.addEventListener('click', () => {
     clearSelection();
     button_today.classList.add('selected');
     img_today.src = IconToday;
@@ -84,14 +119,14 @@ button_today.addEventListener('click', ()=>{
 })
 
 
-button_upcoming.addEventListener('click', ()=>{
+button_upcoming.addEventListener('click', () => {
     clearSelection();
     button_upcoming.classList.add('selected');
     img_upcoming.src = IconUpcoming;
     loadUpcoming();
 })
 
-button_completed.addEventListener('click', ()=>{
+button_completed.addEventListener('click', () => {
     clearSelection();
     button_completed.classList.add('selected');
     img_completed.src = IconCompleted;
@@ -99,7 +134,7 @@ button_completed.addEventListener('click', ()=>{
 })
 
 
-function clearSelection(){
+function clearSelection() {
     button_inbox.classList.remove('selected');
     img_inbox.src = IconInboxOutline;
     button_today.classList.remove('selected');
