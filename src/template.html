@@ -26,22 +26,22 @@
                 <img class="icon primary-filter" src="./images/icon-add.svg" alt="add-icon">
                 <div class="sidebar-title">Add task</div>
             </div>
-            <div class="sidebar-top-item selected" id="inbox-container">
+            <div class="sidebar-top-item selectable selected" id="inbox-container">
                 <img id="img-inbox" class="icon primary-filter" src="./images/icon-inbox.svg" alt="icon-inbox">
                 <div class="sidebar-title">Inbox</div>
             </div>
-            <div class="sidebar-top-item" id="today-container">
-                <img id="img-today" class="icon primary-filter" src="./images/icon-today-outline.svg" alt="icon-today">
+            <div class="sidebar-top-item selectable" id="today-container">
+                <img id="img-today" class="icon primary-filter" src="./images/icon-today.svg" alt="icon-today">
                 <div class="sidebar-title">Today</div>
             </div>
-            <div class="sidebar-top-item" id="upcoming-container">
-                <img id="img-upcoming" class="icon primary-filter" src="./images/icon-upcoming-outline.svg"
+            <div class="sidebar-top-item selectable" id="upcoming-container">
+                <img id="img-upcoming" class="icon primary-filter" src="./images/icon-upcoming.svg"
                     alt="icon-upcoming">
                 <div class="sidebar-title">Upcoming</div>
             </div>
 
-            <div class="sidebar-top-item" id="completed-container">
-                <img id="img-completed" class="icon primary-filter" src="./images/icon-checked-outline.svg"
+            <div class="sidebar-top-item selectable" id="completed-container">
+                <img id="img-completed" class="icon primary-filter" src="./images/icon-checked.svg"
                     alt="icon-completed">
                 <div class="sidebar-title">Completed</div>
             </div>
@@ -49,23 +49,14 @@
         <div class="sidebar-bot">
             <div class="sidebar-bot-header">
                 <div class="title">My Projects</div>
-                <img id="add-project-button" class="icon hoverable" src="./images/icon-add.svg" alt="add-project-button">
-                <img id="hide-projects-button" class="icon hoverable" src="./images/icon-down.svg" alt="hide-projects-button">
+                <img id="add-project-button" class="icon hoverable" src="./images/icon-add.svg"
+                    alt="add-project-button">
+                <img id="hide-projects-button" class="icon hoverable" src="./images/icon-down.svg"
+                    alt="hide-projects-button">
             </div>
 
             <div class="sidebar-content">
-                <div class="sidebar-content-item">
-                    <img class="icon" src="./images/icon-hashtag.svg" alt="hash-tag-icon">
-                    <div class="title">Home</div>
-                    <img class="icon delete hoverable" src="./images/icon-delete-outline.svg" alt="delete-icon">
-                    <img class="icon edit hoverable" src="./images/icon-edit-outline.svg" alt="edit-icon">
-                </div>
-                <div class="sidebar-content-item">
-                    <img class="icon" src="./images/icon-hashtag.svg" alt="hash-tag-icon">
-                    <div class="title">Work</div>
-                    <img class="icon delete hoverable" src="./images/icon-delete-outline.svg" alt="delete-icon">
-                    <img class="icon edit hoverable" src="./images/icon-edit-outline.svg" alt="edit-icon">
-                </div>
+                <div class="sidebar-content-no-projects">No projects found<br>Use the + to add a project</div>
             </div>
         </div>
     </div>
@@ -94,16 +85,16 @@
             <div class="form-item">
                 <div class="form-label">Priority:</div>
                 <div class="form-input" id="priority-radio-group">
-                    <input type="radio" id="task-priority-low" name="priority" value="low"/>
+                    <input type="radio" id="task-priority-low" name="priority" value="low" />
                     <label for="task-priority-low">Low</label>
 
-                    <input type="radio" id="task-priority-medium" name="priority" value="medium" checked/>
+                    <input type="radio" id="task-priority-medium" name="priority" value="medium" checked />
                     <label for="task-priority-medium">Medium</label>
 
-                    <input type="radio" id="task-priority-high" name="priority" value="high"/>
+                    <input type="radio" id="task-priority-high" name="priority" value="high" />
                     <label for="task-priority-high">High</label>
 
-                    <input type="radio" id="task-priority-highest" name="priority" value="highest"/>
+                    <input type="radio" id="task-priority-highest" name="priority" value="highest" />
                     <label for="task-priority-highest">Highest</label>
                 </div>
             </div>
@@ -115,38 +106,39 @@
             <div class="form-footer">
                 <div id="form-location-container">
                     <label for="form-location">Location</label>
-                <select name="Location" id="form-location">
-                    <option value="Inbox" selected>Inbox</option>
-                    <option value="Home">Home</option>
-                    <option value="Work">Work</option>
-                </select>
+                    <select name="Location" id="form-location">
+                    </select>
                 </div>
 
                 <div id="form-buttons-container">
-                    <button class="button-discard" id="discardButton-task" value="Cancel" formmethod="dialog">Discard</button>
-                    <button class="button-confirm" id="confirmButton-task" type="submit" value="default">Add Task</button>
+                    <button class="button-discard" id="discardButton-task" value="Cancel"
+                        formmethod="dialog">Discard</button>
+                    <button class="button-confirm" id="confirmButton-task" type="submit" value="submit-task"
+                        name="submit-task">Add Task</button>
                 </div>
             </div>
         </form>
     </dialog>
 
-     <!-- Add project dialog & forn-->
+    <!-- Add project dialog & forn-->
 
-     <dialog id="add-project-dialog">
+    <dialog id="add-project-dialog">
 
         <form id="add-project-form">
             <div class="form-item">
                 <label class="form-label" for="form-project-name">Project name:</label>
                 <input class="form-input" type="text" name="project-name" id="form-project-name" required>
             </div>
+
+            <div id="project-buttons-container">
+                <button class="button-discard" id="discardButton-project" value="Cancel"
+                    formmethod="dialog">Discard</button>
+                <button class="button-confirm" id="confirmButton-project" type="submit" value="submit-project"
+                    name="submit-project">Add Project</button>
+            </div>
         </form>
 
-        <div id="project-buttons-container">
-            <button class="button-discard" id="discardButton-project" value="Cancel" formmethod="dialog">Discard</button>
-            <button class="button-confirm" id="confirmButton-project" type="submit" value="default">Add Project</button>
-        </div>
-
-     </dialog>
+    </dialog>
 
 </body>
 

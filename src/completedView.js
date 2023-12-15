@@ -11,7 +11,7 @@ function loadCompleted(){
     if(localStorage.getItem("taskId")){
 
         Object.keys(localStorage).forEach(key=>{
-            if(key != 'taskId'|| !isNaN(key)){
+            if(key != 'taskId'&& !isNaN(key)){
                 let task = JSON.parse(localStorage.getItem(key));
                 if(task.isChecked){
                     createTask(task);  

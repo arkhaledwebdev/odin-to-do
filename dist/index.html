@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin To-Do</title>
     <link rel="stylesheet" href="57011448dc08b9372b5e.css">
-    <script src="b76deef1abdb919ff604.js" defer></script>
+    <script src="e71b42db42be39f84b65.js" defer></script>
 <script defer src="main.js"></script></head>
 
 <body>
@@ -26,22 +26,22 @@
                 <img class="icon primary-filter" src="3cffe9a515498593b872.svg" alt="add-icon">
                 <div class="sidebar-title">Add task</div>
             </div>
-            <div class="sidebar-top-item selected" id="inbox-container">
+            <div class="sidebar-top-item selectable selected" id="inbox-container">
                 <img id="img-inbox" class="icon primary-filter" src="939f2a757e3335be71bb.svg" alt="icon-inbox">
                 <div class="sidebar-title">Inbox</div>
             </div>
-            <div class="sidebar-top-item" id="today-container">
-                <img id="img-today" class="icon primary-filter" src="3faae0cf01e4ecd160ef.svg" alt="icon-today">
+            <div class="sidebar-top-item selectable" id="today-container">
+                <img id="img-today" class="icon primary-filter" src="233385e32206cd372d69.svg" alt="icon-today">
                 <div class="sidebar-title">Today</div>
             </div>
-            <div class="sidebar-top-item" id="upcoming-container">
-                <img id="img-upcoming" class="icon primary-filter" src="18f552623324e58156e6.svg"
+            <div class="sidebar-top-item selectable" id="upcoming-container">
+                <img id="img-upcoming" class="icon primary-filter" src="1514cb89e66edd886067.svg"
                     alt="icon-upcoming">
                 <div class="sidebar-title">Upcoming</div>
             </div>
 
-            <div class="sidebar-top-item" id="completed-container">
-                <img id="img-completed" class="icon primary-filter" src="9b9ff66871447d0aeae6.svg"
+            <div class="sidebar-top-item selectable" id="completed-container">
+                <img id="img-completed" class="icon primary-filter" src="1a2adbe787b23f5b8aec.svg"
                     alt="icon-completed">
                 <div class="sidebar-title">Completed</div>
             </div>
@@ -49,23 +49,14 @@
         <div class="sidebar-bot">
             <div class="sidebar-bot-header">
                 <div class="title">My Projects</div>
-                <img id="add-project-button" class="icon hoverable" src="3cffe9a515498593b872.svg" alt="add-project-button">
-                <img id="hide-projects-button" class="icon hoverable" src="da1d4548b671a011dfa4.svg" alt="hide-projects-button">
+                <img id="add-project-button" class="icon hoverable" src="3cffe9a515498593b872.svg"
+                    alt="add-project-button">
+                <img id="hide-projects-button" class="icon hoverable" src="da1d4548b671a011dfa4.svg"
+                    alt="hide-projects-button">
             </div>
 
             <div class="sidebar-content">
-                <div class="sidebar-content-item">
-                    <img class="icon" src="615cad230d498ed17879.svg" alt="hash-tag-icon">
-                    <div class="title">Home</div>
-                    <img class="icon delete hoverable" src="de0bb67a90c508546224.svg" alt="delete-icon">
-                    <img class="icon edit hoverable" src="c11ca64583db9195885d.svg" alt="edit-icon">
-                </div>
-                <div class="sidebar-content-item">
-                    <img class="icon" src="615cad230d498ed17879.svg" alt="hash-tag-icon">
-                    <div class="title">Work</div>
-                    <img class="icon delete hoverable" src="de0bb67a90c508546224.svg" alt="delete-icon">
-                    <img class="icon edit hoverable" src="c11ca64583db9195885d.svg" alt="edit-icon">
-                </div>
+                <div class="sidebar-content-no-projects">No projects found<br>Use the + to add a project</div>
             </div>
         </div>
     </div>
@@ -94,16 +85,16 @@
             <div class="form-item">
                 <div class="form-label">Priority:</div>
                 <div class="form-input" id="priority-radio-group">
-                    <input type="radio" id="task-priority-low" name="priority" value="low"/>
+                    <input type="radio" id="task-priority-low" name="priority" value="low" />
                     <label for="task-priority-low">Low</label>
 
-                    <input type="radio" id="task-priority-medium" name="priority" value="medium" checked/>
+                    <input type="radio" id="task-priority-medium" name="priority" value="medium" checked />
                     <label for="task-priority-medium">Medium</label>
 
-                    <input type="radio" id="task-priority-high" name="priority" value="high"/>
+                    <input type="radio" id="task-priority-high" name="priority" value="high" />
                     <label for="task-priority-high">High</label>
 
-                    <input type="radio" id="task-priority-highest" name="priority" value="highest"/>
+                    <input type="radio" id="task-priority-highest" name="priority" value="highest" />
                     <label for="task-priority-highest">Highest</label>
                 </div>
             </div>
@@ -115,38 +106,39 @@
             <div class="form-footer">
                 <div id="form-location-container">
                     <label for="form-location">Location</label>
-                <select name="Location" id="form-location">
-                    <option value="Inbox" selected>Inbox</option>
-                    <option value="Home">Home</option>
-                    <option value="Work">Work</option>
-                </select>
+                    <select name="Location" id="form-location">
+                    </select>
                 </div>
 
                 <div id="form-buttons-container">
-                    <button class="button-discard" id="discardButton-task" value="Cancel" formmethod="dialog">Discard</button>
-                    <button class="button-confirm" id="confirmButton-task" type="submit" value="default">Add Task</button>
+                    <button class="button-discard" id="discardButton-task" value="Cancel"
+                        formmethod="dialog">Discard</button>
+                    <button class="button-confirm" id="confirmButton-task" type="submit" value="submit-task"
+                        name="submit-task">Add Task</button>
                 </div>
             </div>
         </form>
     </dialog>
 
-     <!-- Add project dialog & forn-->
+    <!-- Add project dialog & forn-->
 
-     <dialog id="add-project-dialog">
+    <dialog id="add-project-dialog">
 
         <form id="add-project-form">
             <div class="form-item">
                 <label class="form-label" for="form-project-name">Project name:</label>
                 <input class="form-input" type="text" name="project-name" id="form-project-name" required>
             </div>
+
+            <div id="project-buttons-container">
+                <button class="button-discard" id="discardButton-project" value="Cancel"
+                    formmethod="dialog">Discard</button>
+                <button class="button-confirm" id="confirmButton-project" type="submit" value="submit-project"
+                    name="submit-project">Add Project</button>
+            </div>
         </form>
 
-        <div id="project-buttons-container">
-            <button class="button-discard" id="discardButton-project" value="Cancel" formmethod="dialog">Discard</button>
-            <button class="button-confirm" id="confirmButton-project" type="submit" value="default">Add Project</button>
-        </div>
-
-     </dialog>
+    </dialog>
 
 </body>
 

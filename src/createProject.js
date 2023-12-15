@@ -1,4 +1,8 @@
 import hashtagIconSVG from './images/icon-hashtag.svg'
+import deleteIconSVG from './images/icon-delete.svg'
+import editIconSVG from './images/icon-edit.svg'
+import { clearSelection } from './util';
+
 import { loadProjectView } from './projectView';
 
 export default function createProject(projectName) {
@@ -22,13 +26,13 @@ export default function createProject(projectName) {
     // Create the delete icon element
     const deleteIcon = document.createElement('img');
     deleteIcon.classList.add('icon', 'delete', 'hoverable');
-    deleteIcon.src = './images/icon-delete-outline.svg';
+    deleteIcon.src = deleteIconSVG;
     deleteIcon.alt = 'delete-icon';
 
     // Create the edit icon element
     const editIcon = document.createElement('img');
     editIcon.classList.add('icon', 'edit', 'hoverable');
-    editIcon.src = './images/icon-edit-outline.svg';
+    editIcon.src = editIconSVG;
     editIcon.alt = 'edit-icon';
 
     // Append the child elements to their respective parent elements
@@ -36,8 +40,12 @@ export default function createProject(projectName) {
     sidebarContentItem.appendChild(titleElement);
     sidebarContentItem.appendChild(deleteIcon);
     sidebarContentItem.appendChild(editIcon);
+    sidebarContentItem.classList.add('selectable');
 
-    sidebarContentItem.addEventListener('click',()=>{
+    sidebarContentItem.addEventListener('click',(e)=>{
+        clearSelection();
+        e.target.parentElement.classList.add('selected');
+        console.log(e.target.parentElement);
         loadProjectView(projectName);
     })
 
