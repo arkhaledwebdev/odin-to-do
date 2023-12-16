@@ -6,6 +6,7 @@ import { loadProjectView } from "./projectView";
 
 let _selectedView = 'Inbox';
 let _selectedProject = '';
+let _areProjectsHidden = false;
 
 function setSelectedView(view) {
     _selectedView = view;
@@ -21,6 +22,14 @@ function setSelectedProject(project) {
 
 function getSelectedProject() {
     return _selectedProject;
+}
+
+function setAreProjectsHidden(check) {
+    _areProjectsHidden = check;
+}
+
+function getAreProjectsHidden() {
+    return _areProjectsHidden;
 }
 
 function updateUI() {
@@ -60,4 +69,9 @@ function clearSelection() {
 }
 
 
-export {setSelectedView, getSlectedView, setSelectedProject, getSelectedProject, updateUI, clearSelection}
+export {
+    setSelectedView, getSlectedView,
+    setSelectedProject, getSelectedProject,
+    setAreProjectsHidden, getAreProjectsHidden,
+    updateUI, clearSelection
+}

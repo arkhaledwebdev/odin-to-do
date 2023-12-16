@@ -1,9 +1,13 @@
 import './style.css'
 import html from "./template.html"
+
+import UpIcon from './images/icon-up.svg';
+import DownIcon from './images/icon-down.svg';
+
 import { loadInbox } from './inboxView'
 import Task from './task'
 import saveTask from './saveTask'
-import { clearSelection, setSelectedView, updateUI } from './viewController'
+import { clearSelection, getAreProjectsHidden, setAreProjectsHidden, setSelectedView, updateUI } from './viewController'
 import saveProject from './saveProject'
 import { loadProjectSidebar, loadProjectsTitles } from './projectView'
 
@@ -16,6 +20,8 @@ const addTaskDialog = document.getElementById('add-task-dialog');
 const addTaskForm = document.getElementById('add-task-form');
 const confirmAddTask = document.getElementById('confirmButton-task');
 const discardAddTask = document.getElementById('discardButton-task');
+const hideProjectsButton = document.getElementById('hide-projects-button');
+const projetcsSidebar = document.querySelector('.sidebar-content');
 const addProjectButton = document.getElementById('add-project-button');
 const addProjectDialog = document.getElementById('add-project-dialog');
 const addProjectForm = document.getElementById('add-project-form');
@@ -29,6 +35,25 @@ addTaskButton.addEventListener('click', () => {
 
 addProjectButton.addEventListener('click', () => {
     addProjectDialog.showModal();
+})
+
+hideProjectsButton.addEventListener('click', ()=>{
+    let isHidden = getAreProjectsHidden();
+ 
+    if(isHidden){ 
+        projetcsSidebar.style.display = 'flex';
+        hideProjectsButton.src = DownIcon;
+        projetcsSidebar.style.transform = 'translateY(0%)'
+        setAreProjectsHidden(false)
+    }
+    else{
+        projetcsSidebar.style.transform = 'translateY(-25%)'
+        setAreProjectsHidden(true)
+        setTimeout(()=>{
+            hideProjectsButton.src = UpIcon;
+            projetcsSidebar.style.display = 'none';
+        },500);
+    }
 })
 
 discardAddTask.addEventListener('click', (e) => {
