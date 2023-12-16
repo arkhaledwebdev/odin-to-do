@@ -1,6 +1,7 @@
 import completeTask from "./completeTask";
 import deleteIconSVG from './images/icon-delete.svg'
 import editIconSVG from './images/icon-edit.svg'
+import { updateUI } from "./viewController";
 
 export default function createTask(task){
 
@@ -9,6 +10,7 @@ const content = document.getElementById('content');
 // Create the main container
 const taskContainer = document.createElement('div');
 taskContainer.classList.add('task-container');
+taskContainer.style.transition = 'opacity 0.5s ease-in-out';
 
 // Create the checkbox
 const checkbox = document.createElement('input');
@@ -25,9 +27,19 @@ else{
 checkbox.addEventListener('click',()=>{
     if(checkbox.checked){
         completeTask(checkbox.dataset.id, true);
+        taskContainer.style.opacity = 0;
+        setTimeout(()=>{
+            updateUI();
+            taskContainer.style.opacity = 1;
+        },500);
     }
     else{
         completeTask(checkbox.dataset.id, false);
+        taskContainer.style.opacity = 0;
+        setTimeout(()=>{
+            updateUI();
+            taskContainer.style.opacity = 1;
+        },500);
     }
 })
 

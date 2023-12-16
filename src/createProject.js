@@ -1,10 +1,7 @@
 import hashtagIconSVG from './images/icon-hashtag.svg'
 import deleteIconSVG from './images/icon-delete.svg'
 import editIconSVG from './images/icon-edit.svg'
-import { clearSelection } from './util';
-
-import { loadProjectView } from './projectView';
-
+import { clearSelection, getSelectedProject, setSelectedProject, setSelectedView, updateUI } from './viewController';
 export default function createProject(projectName) {
 
     const sidebarContent = document.querySelector('.sidebar-content');
@@ -45,8 +42,10 @@ export default function createProject(projectName) {
     sidebarContentItem.addEventListener('click',(e)=>{
         clearSelection();
         e.target.parentElement.classList.add('selected');
-        console.log(e.target.parentElement);
-        loadProjectView(projectName);
+
+        setSelectedProject(projectName);
+        setSelectedView('Project');
+        updateUI();
     })
 
     sidebarContent.appendChild(sidebarContentItem);

@@ -1,12 +1,9 @@
 import './style.css'
 import html from "./template.html"
 import { loadInbox } from './inboxView'
-import { loadToday } from './todayView'
-import { loadUpcoming } from './upcomingView'
-import { loadCompleted } from './completedView'
 import Task from './task'
 import saveTask from './saveTask'
-import { clearSelection } from './util'
+import { clearSelection, setSelectedView, updateUI } from './viewController'
 import saveProject from './saveProject'
 import { loadProjectSidebar, loadProjectsTitles } from './projectView'
 
@@ -70,7 +67,7 @@ addTaskForm.addEventListener('submit', (e) => {
     if (confirmAddTask.classList.contains('submitted')) {
         saveTask(task);
 
-        loadInbox();
+        updateUI();
 
         confirmAddTask.classList.remove('submitted');
 
@@ -100,24 +97,28 @@ addProjectForm.addEventListener('submit', (e) => {
 button_inbox.addEventListener('click', () => {
     clearSelection();
     button_inbox.classList.add('selected');
-    loadInbox();
+    setSelectedView('Inbox');
+    updateUI();
 })
 
 button_today.addEventListener('click', () => {
     clearSelection();
     button_today.classList.add('selected');
-    loadToday();
+    setSelectedView('Today');
+    updateUI();
 })
 
 
 button_upcoming.addEventListener('click', () => {
     clearSelection();
     button_upcoming.classList.add('selected');
-    loadUpcoming();
+    setSelectedView('Upcoming');
+    updateUI();
 })
 
 button_completed.addEventListener('click', () => {
     clearSelection();
     button_completed.classList.add('selected');
-    loadCompleted();
+    setSelectedView('Completed');
+    updateUI();
 })

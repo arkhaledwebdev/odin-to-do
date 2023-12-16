@@ -2,7 +2,6 @@ import createProject from "./createProject";
 import createTask from "./createTask";
 
 function loadProjectView(location) {
-
     const header_title = document.getElementById('main-content-header');
     header_title.textContent = location;
 
@@ -20,7 +19,6 @@ function loadProjectView(location) {
             }
         })
     }
-
 }
 
 
