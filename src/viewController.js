@@ -12,7 +12,7 @@ function setSelectedView(view) {
     _selectedView = view;
 }
 
-function getSlectedView() {
+function getSelectedView() {
     return _selectedView;
 }
 
@@ -34,8 +34,8 @@ function getAreProjectsHidden() {
 
 function updateUI() {
 
-    const selectedView = getSlectedView();
-    const selctedProject = getSelectedProject();
+    const selectedView = getSelectedView();
+    const selectedProject = getSelectedProject();
 
     switch (selectedView) {
 
@@ -52,7 +52,7 @@ function updateUI() {
             loadCompleted();
             break;
         case 'Project':
-            loadProjectView(selctedProject);
+            loadProjectView(selectedProject);
             break;
         default:
             loadInbox();
@@ -70,7 +70,7 @@ function clearSelection() {
 
 
 export {
-    setSelectedView, getSlectedView,
+    setSelectedView, getSelectedView,
     setSelectedProject, getSelectedProject,
     setAreProjectsHidden, getAreProjectsHidden,
     updateUI, clearSelection

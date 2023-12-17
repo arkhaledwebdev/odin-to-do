@@ -1,7 +1,14 @@
 import hashtagIconSVG from './images/icon-hashtag.svg'
 import deleteIconSVG from './images/icon-delete.svg'
 import editIconSVG from './images/icon-edit.svg'
-import { clearSelection, getSelectedProject, setSelectedProject, setSelectedView, updateUI } from './viewController';
+import { clearSelection, setSelectedProject, setSelectedView, updateUI } from './viewController';
+
+const removeProjectDialog = document.getElementById('remove-project-dialog');
+const confirmButtonProject = document.getElementById('confirmButton-project');
+const confirmButtonRemoveProject = document.getElementById('confirmButton-removeProject');
+const addProjectDialog = document.getElementById('add-project-dialog');
+const formProjectName = document.getElementById('form-project-name');
+
 export default function createProject(projectName) {
 
     const sidebarContent = document.querySelector('.sidebar-content');
@@ -25,12 +32,21 @@ export default function createProject(projectName) {
     deleteIcon.classList.add('icon', 'delete', 'hoverable');
     deleteIcon.src = deleteIconSVG;
     deleteIcon.alt = 'delete-icon';
+    deleteIcon.addEventListener('click',()=>{
+        confirmButtonRemoveProject.dataset.key = `project_key_${projectName}`;
+        removeProjectDialog.showModal();
+    })
 
     // Create the edit icon element
     const editIcon = document.createElement('img');
     editIcon.classList.add('icon', 'edit', 'hoverable');
     editIcon.src = editIconSVG;
     editIcon.alt = 'edit-icon';
+    editIcon.addEventListener('click',()=>{
+        formProjectName.value = projectName;
+        confirmButtonProject.dataset.key = `project_key_${projectName}`;
+        addProjectDialog.showModal();
+    })
 
     // Append the child elements to their respective parent elements
     sidebarContentItem.appendChild(hashtagIcon);
@@ -42,11 +58,10 @@ export default function createProject(projectName) {
     sidebarContentItem.addEventListener('click',(e)=>{
         clearSelection();
         e.target.parentElement.classList.add('selected');
-
         setSelectedProject(projectName);
         setSelectedView('Project');
         updateUI();
-    })
+    });
 
     sidebarContent.appendChild(sidebarContentItem);
 }

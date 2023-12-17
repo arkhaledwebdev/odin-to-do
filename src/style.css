@@ -345,14 +345,14 @@ body {
 
 /* Add task dialog */
 
-#add-task-dialog, #add-project-dialog {
+.dialog {
   background-color: var(--surface-color);
   border-radius: 6px;
   padding: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-#add-task-form, #add-project-form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 20px;
