@@ -34,6 +34,8 @@ const removeTaskDialog = document.getElementById('remove-task-dialog');
 const removeTaskForm = document.getElementById('remove-task-form');
 const confirmButtonRemoveProject = document.getElementById('confirmButton-removeProject');
 const confirmButtonRemoveTask = document.getElementById('confirmButton-removeTask');
+const discardButtonRemoveProject = document.getElementById('discardButton-removeProject');;
+const discardButtonRemoveTask = document.getElementById('discardButton-removeTask');
 
 
 addTaskButton.addEventListener('click', () => {
@@ -78,8 +80,18 @@ confirmAddTask.addEventListener('click', () => {
     confirmAddTask.classList.add('submitted');
 })
 
+discardButtonRemoveTask.addEventListener('click',(e)=>{
+    e.preventDefault();
+    removeTaskDialog.close();
+})
+
 confirmAddProject.addEventListener('click', () => {
     confirmAddProject.classList.add('submitted');
+})
+
+discardButtonRemoveProject.addEventListener('click', (e)=>{
+    e.preventDefault();
+    removeProjectDialog.close();
 })
 
 loadInbox();
@@ -119,7 +131,11 @@ addProjectForm.addEventListener('submit', (e) => {
     let oldNameKey = confirmAddProject.dataset.key;
     let oldName = localStorage.getItem(oldNameKey);
 
-    if (confirmAddProject.classList.contains('submitted')) {
+    console.log(projectNameKey);
+    console.log(oldNameKey);
+
+
+    if (confirmAddProject.classList.contains('submitted') && projectName !== oldName) {
 
         if(!localStorage.getItem(oldNameKey)){
             saveProject(projectName);

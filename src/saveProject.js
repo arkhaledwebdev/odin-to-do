@@ -10,6 +10,10 @@ function saveProject(projectName){
 
 function editProject(oldName, newName){
 
+    if(oldName === newName){
+        return;
+    }
+
     Object.keys(localStorage).forEach(key=>{
         if(!isNaN(key) && key != 'taskId'){
             let task = JSON.parse(localStorage.getItem(key));
@@ -19,6 +23,7 @@ function editProject(oldName, newName){
             }
         }
     })
+    saveProject(newName);
     let oldNameKey = `project_key_${oldName}`;
     localStorage.removeItem(oldNameKey);
 }
