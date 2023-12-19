@@ -39,6 +39,7 @@ const discardButtonRemoveTask = document.getElementById('discardButton-removeTas
 
 
 addTaskButton.addEventListener('click', () => {
+    confirmAddTask.dataset.type = 'add';
     loadProjectsTitles();
     addTaskDialog.showModal();
 })
@@ -100,12 +101,15 @@ loadProjectSidebar();
 addTaskForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    let taskId = (confirmAddTask.dataset.id != null) ? confirmAddTask.dataset.id : null;
+
     let task = new Task(
+        taskId,
         document.getElementById('form-task-name').value,
         document.getElementById('form-task-date').value,
         document.querySelector('input[name = "priority"]:checked').value,
         document.getElementById('form-task-description').value,
-        document.getElementById('form-location').value
+        document.getElementById('form-location').value,
     );
 
     if (confirmAddTask.classList.contains('submitted')) {

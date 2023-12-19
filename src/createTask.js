@@ -1,7 +1,11 @@
 import completeTask from "./completeTask";
 import deleteIconSVG from './images/icon-delete.svg'
 import editIconSVG from './images/icon-edit.svg'
+import loadEditTask from "./editTask";
 import { updateUI } from "./viewController";
+
+const addTaskDialog = document.getElementById('add-task-dialog'); 
+const confirmAddTask = document.getElementById('confirmButton-task');
 
 const removeTaskDialog = document.getElementById('remove-task-dialog');
 const confirmButtonRemoveTask = document.getElementById('confirmButton-removeTask');
@@ -74,8 +78,14 @@ export default function createTask(task) {
     //create task edit button
     const taskEditButton = document.createElement('img');
     taskEditButton.classList.add('icon', 'hoverable');
-    taskEditButton.id = `task-edit-button-${task.id}`;
     taskEditButton.src = editIconSVG;
+    taskEditButton.addEventListener('click',(e)=>{
+        console.log(e.target);
+        confirmAddTask.dataset.id = task.id;
+        confirmAddTask.dataset.type = 'edit';
+        loadEditTask(task);
+        addTaskDialog.showModal();
+    })
 
     //create task delete button
     const taskDeleteButton = document.createElement('img');
