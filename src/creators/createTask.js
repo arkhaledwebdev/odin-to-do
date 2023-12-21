@@ -1,6 +1,6 @@
-import completeTask from "./completeTask";
-import deleteIconSVG from './images/icon-delete.svg'
-import editIconSVG from './images/icon-edit.svg'
+import deleteIconSVG from '../images/icon-delete.svg'
+import editIconSVG from '../images/icon-edit.svg'
+import { completeTask } from '../controllers/taskController';
 import { updateUI, loadTaskDetails } from "../controllers/viewController";
 
 const addTaskDialog = document.getElementById('add-task-dialog'); 

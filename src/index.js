@@ -3,13 +3,14 @@ import html from "./template.html"
 
 import UpIcon from './images/icon-up.svg';
 import DownIcon from './images/icon-down.svg';
-
-import { saveTask } from './controllers/taskController';
-
-import { loadProjectSidebar, loadProjectsTitles, clearSelection, getAreProjectsHidden, setAreProjectsHidden, setSelectedView, updateUI } from './viewController'
-import { saveProject, editProject } from './controllers/projectController';
-import { loadProjectSidebar, loadProjectsTitles } from './projectView'
-import removeItem from './removeItem';
+import Task from './model/task'
+import { removeTask, saveTask } from './controllers/taskController';
+import { 
+    loadProjectSidebar, loadProjectsTitles,
+    clearSelection, getAreProjectsHidden,
+    setAreProjectsHidden, setSelectedView,
+    updateUI } from './controllers/viewController'
+import { saveProject, editProject, removeProject } from './controllers/projectController';
 
 const button_inbox = document.getElementById('inbox-container');
 const button_today = document.getElementById('today-container');
@@ -36,6 +37,8 @@ const confirmButtonRemoveTask = document.getElementById('confirmButton-removeTas
 const discardButtonRemoveProject = document.getElementById('discardButton-removeProject');;
 const discardButtonRemoveTask = document.getElementById('discardButton-removeTask');
 
+updateUI();
+loadProjectsTitles();
 
 addTaskButton.addEventListener('click', () => {
     confirmAddTask.dataset.type = 'add';
@@ -94,9 +97,6 @@ discardButtonRemoveProject.addEventListener('click', (e)=>{
     removeProjectDialog.close();
 })
 
-loadInbox();
-loadProjectSidebar();
-
 addTaskForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -122,7 +122,7 @@ addTaskForm.addEventListener('submit', (e) => {
 
 removeTaskForm.addEventListener('submit', (e)=>{
     const taskId = confirmButtonRemoveTask.dataset.id;
-    removeItem(taskId);
+    removeTask(taskId);
     removeTaskDialog.close();
 })
 
@@ -158,7 +158,7 @@ addProjectForm.addEventListener('submit', (e) => {
 removeProjectForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     const projectName = confirmButtonRemoveProject.dataset.key;
-    removeItem(projectName);
+    removeProject(projectName);
     removeProjectDialog.close();
 })
 

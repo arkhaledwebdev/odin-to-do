@@ -1,6 +1,6 @@
-import hashtagIconSVG from './images/icon-hashtag.svg'
-import deleteIconSVG from './images/icon-delete.svg'
-import editIconSVG from './images/icon-edit.svg'
+import hashtagIconSVG from '../images/icon-hashtag.svg'
+import deleteIconSVG from '../images/icon-delete.svg'
+import editIconSVG from '../images/icon-edit.svg'
 import { clearSelection, setSelectedProject, setSelectedView, updateUI } from '../controllers/viewController';
 
 const removeProjectDialog = document.getElementById('remove-project-dialog');

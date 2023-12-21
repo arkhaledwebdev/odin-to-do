@@ -38,7 +38,7 @@ function _loadView(view){
 
     let taskList = getAllTasks(view);
 
-    for(task of taskList){
+    for(let task of taskList){
         createTask(task);
     }
 }
