@@ -38,7 +38,7 @@ const discardButtonRemoveProject = document.getElementById('discardButton-remove
 const discardButtonRemoveTask = document.getElementById('discardButton-removeTask');
 
 updateUI();
-loadProjectsTitles();
+loadProjectSidebar();
 
 addTaskButton.addEventListener('click', () => {
     confirmAddTask.dataset.type = 'add';

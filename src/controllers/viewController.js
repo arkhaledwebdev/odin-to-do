@@ -1,5 +1,6 @@
 import { getAllTasks } from "./taskController";
 import createTask from "../creators/createTask";
+import createProject from "../creators/createProject";
 
 let _selectedView = 'Inbox';
 let _selectedProject = '';
@@ -31,7 +32,13 @@ function getAreProjectsHidden() {
 
 function _loadView(view){
     const header_title = document.getElementById('main-content-header');
-    header_title.textContent = view;
+    let selectedProjectName = getSelectedProject();
+    if(view === 'Project'){
+        header_title.textContent = selectedProjectName;
+    }
+    else {
+        header_title.textContent = view;
+    }
 
     const content = document.getElementById('content');
     content.replaceChildren();
@@ -42,7 +49,6 @@ function _loadView(view){
         createTask(task);
     }
 }
-
 
 function updateUI() {
 
@@ -77,7 +83,7 @@ function loadProjectSidebar() {
     sidebarContent.replaceChildren();
 
     Object.keys(localStorage).forEach(key => {
-        if (key != 'taskId' && isNaN(key)) {
+        if (key.includes('project_key')) {
             createProject(localStorage.getItem(key))
         }
     })
@@ -96,7 +102,7 @@ function loadProjectsTitles() {
     formLocationSelect.add(inboxOption);
 
     Object.keys(localStorage).forEach(key => {
-        if (key != 'taskId' && isNaN(key)) {
+        if (key.includes('project_key')) {
             let newOption = document.createElement('option');
             let optionValue = localStorage.getItem(key)
             newOption.value = optionValue;

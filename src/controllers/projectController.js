@@ -1,5 +1,7 @@
 import { removeProjectTasks, saveTask } from "./taskController";
-import {  setSelectedView } from "./viewController";
+import {  setSelectedProject, setSelectedView } from "./viewController";
+import { loadProjectSidebar } from "./viewController";
+import { updateUI } from "./viewController";
 
 function saveProject(projectName) {
 
@@ -22,6 +24,10 @@ function editProject(oldName, newName) {
     saveProject(newName);
     let oldNameKey = `project_key_${oldName}`;
     localStorage.removeItem(oldNameKey);
+    setSelectedProject(newName);
+    setSelectedView('Project');
+    loadProjectSidebar();
+    updateUI();
 }
 
 function removeProject(project_key) {
