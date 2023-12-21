@@ -4,12 +4,13 @@ import html from "./template.html"
 import UpIcon from './images/icon-up.svg';
 import DownIcon from './images/icon-down.svg';
 import Task from './model/task'
-import { removeTask, saveTask } from './controllers/taskController';
+import { editTask, getSelectedTaskId, getSelectedTaskType, removeTask, saveTask, setSelectedTaskType } from './controllers/taskController';
 import { 
     loadProjectSidebar, loadProjectsTitles,
     clearSelection, getAreProjectsHidden,
     setAreProjectsHidden, setSelectedView,
-    updateUI } from './controllers/viewController'
+    updateUI, 
+    getSelectedProject} from './controllers/viewController'
 import { saveProject, editProject, removeProject } from './controllers/projectController';
 
 const button_inbox = document.getElementById('inbox-container');
@@ -32,8 +33,6 @@ const removeProjectDialog = document.getElementById('remove-project-dialog');
 const removeProjectForm = document.getElementById('remove-project-form');
 const removeTaskDialog = document.getElementById('remove-task-dialog');
 const removeTaskForm = document.getElementById('remove-task-form');
-const confirmButtonRemoveProject = document.getElementById('confirmButton-removeProject');
-const confirmButtonRemoveTask = document.getElementById('confirmButton-removeTask');
 const discardButtonRemoveProject = document.getElementById('discardButton-removeProject');;
 const discardButtonRemoveTask = document.getElementById('discardButton-removeTask');
 
@@ -41,7 +40,7 @@ updateUI();
 loadProjectSidebar();
 
 addTaskButton.addEventListener('click', () => {
-    confirmAddTask.dataset.type = 'add';
+    setSelectedTaskType('Add');
     loadProjectsTitles();
     addTaskDialog.showModal();
 })
@@ -100,19 +99,33 @@ discardButtonRemoveProject.addEventListener('click', (e)=>{
 addTaskForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    let taskId = (confirmAddTask.dataset.id != null) ? confirmAddTask.dataset.id : null;
-
-    let task = new Task(
-        taskId,
-        document.getElementById('form-task-name').value,
-        document.getElementById('form-task-date').value,
-        document.querySelector('input[name = "priority"]:checked').value,
-        document.getElementById('form-task-description').value,
-        document.getElementById('form-location').value,
-    );
-
     if (confirmAddTask.classList.contains('submitted')) {
-        saveTask(task);
+        let type = getSelectedTaskType();
+
+        if(type === 'Add'){
+            let task = new Task(
+                document.getElementById('form-task-name').value,
+                document.getElementById('form-task-date').value,
+                document.querySelector('input[name = "priority"]:checked').value,
+                document.getElementById('form-task-description').value,
+                document.getElementById('form-location').value,
+            );
+            saveTask(task);
+        }
+        if(type === 'Edit'){
+            let selectedTaskId = getSelectedTaskId();
+            let isSelectedTaskChecked = JSON.parse(localStorage.getItem(selectedTaskId)).isChecked;
+            let editedTask = new Task(
+                document.getElementById('form-task-name').value,
+                document.getElementById('form-task-date').value,
+                document.querySelector('input[name = "priority"]:checked').value,
+                document.getElementById('form-task-description').value,
+                document.getElementById('form-location').value,
+                isSelectedTaskChecked,
+                selectedTaskId,
+            )
+            editTask(editedTask);
+        }
         updateUI();
         confirmAddTask.classList.remove('submitted');
     }
@@ -120,9 +133,8 @@ addTaskForm.addEventListener('submit', (e) => {
     addTaskDialog.close();
 })
 
-removeTaskForm.addEventListener('submit', (e)=>{
-    const taskId = confirmButtonRemoveTask.dataset.id;
-    removeTask(taskId);
+removeTaskForm.addEventListener('submit', ()=>{
+    removeTask(getSelectedTaskId());
     removeTaskDialog.close();
 })
 
@@ -130,13 +142,8 @@ addProjectForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     let projectName = document.getElementById('form-project-name').value;
-    let projectNameKey = `project_key_${projectName}`;
-    let oldNameKey = confirmAddProject.dataset.key;
-    let oldName = localStorage.getItem(oldNameKey);
-
-    console.log(projectNameKey);
-    console.log(oldNameKey);
-
+    let oldName = getSelectedProject();
+    let oldNameKey = `project_key_${oldName}`;
 
     if (confirmAddProject.classList.contains('submitted') && projectName !== oldName) {
 
@@ -157,8 +164,7 @@ addProjectForm.addEventListener('submit', (e) => {
 
 removeProjectForm.addEventListener('submit', (e)=>{
     e.preventDefault();
-    const projectName = confirmButtonRemoveProject.dataset.key;
-    removeProject(projectName);
+    removeProject(`project_key_${getSelectedProject()}`);
     removeProjectDialog.close();
 })
 

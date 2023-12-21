@@ -1,23 +1,21 @@
-import { removeProjectTasks, saveTask } from "./taskController";
+import { editTask, removeProjectTasks, saveTask } from "./taskController";
 import {  setSelectedProject, setSelectedView } from "./viewController";
 import { loadProjectSidebar } from "./viewController";
 import { updateUI } from "./viewController";
 
 function saveProject(projectName) {
-
     let project_key = `project_key_${projectName}`;
     localStorage.setItem(project_key, projectName);
-
 }
 
 function editProject(oldName, newName) {
 
     Object.keys(localStorage).forEach(key => {
-        if (!isNaN(key) && key != 'taskId') {
+        if (!isNaN(key)) {
             let task = JSON.parse(localStorage.getItem(key));
             if (task.location === oldName) {
                 task.location = newName;
-                saveTask(task);
+                editTask(task);
             }
         }
     })

@@ -4,8 +4,6 @@ import editIconSVG from '../images/icon-edit.svg'
 import { clearSelection, setSelectedProject, setSelectedView, updateUI } from '../controllers/viewController';
 
 const removeProjectDialog = document.getElementById('remove-project-dialog');
-const confirmButtonProject = document.getElementById('confirmButton-project');
-const confirmButtonRemoveProject = document.getElementById('confirmButton-removeProject');
 const addProjectDialog = document.getElementById('add-project-dialog');
 const formProjectName = document.getElementById('form-project-name');
 
@@ -33,7 +31,7 @@ export default function createProject(projectName) {
     deleteIcon.src = deleteIconSVG;
     deleteIcon.alt = 'delete-icon';
     deleteIcon.addEventListener('click',()=>{
-        confirmButtonRemoveProject.dataset.key = `project_key_${projectName}`;
+        setSelectedProject(projectName);
         removeProjectDialog.showModal();
     })
 
@@ -44,7 +42,7 @@ export default function createProject(projectName) {
     editIcon.alt = 'edit-icon';
     editIcon.addEventListener('click',()=>{
         formProjectName.value = projectName;
-        confirmButtonProject.dataset.key = `project_key_${projectName}`;
+        setSelectedProject(projectName);
         addProjectDialog.showModal();
     })
 

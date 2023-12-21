@@ -2,25 +2,45 @@ import { parseISO, startOfDay, startOfToday } from "date-fns";
 import isAfter from "date-fns/isAfter";
 import { getSelectedProject, updateUI } from "./viewController";
 
+let _selected_task_id = 0;
+let _selected_task_type = 'Add';
+
+function setSelectedTaskId(taskId) {
+    _selected_task_id = taskId;
+}
+
+function setSelectedTaskType(type) {
+    _selected_task_type = type;
+}
+
+function getSelectedTaskId() {
+    return _selected_task_id;
+}
+
+function getSelectedTaskType() {
+    return _selected_task_type;
+}
+
 function saveTask(task) {
 
-    let task_id = 0;
+    let taskId = 0;
 
     if (!localStorage.getItem('taskId')) {
         localStorage.setItem('taskId', '0');
     }
-    else {
-        task_id = parseInt(localStorage.getItem('taskId'));
+    else{
+        taskId = parseInt(localStorage.getItem('taskId'));
     }
+    task.id = taskId.toString();
 
-    task.id = task_id.toString();
-    localStorage.setItem(task_id.toString(), JSON.stringify(task));
-    task_id++;
-    localStorage.setItem('task_id', task_id);
+    localStorage.setItem(taskId.toString(), JSON.stringify(task));
+    
+    taskId++;
+    localStorage.setItem('taskId', taskId);
 }
 
-function editTask(task){
-    localStorage.setItem(task.id, JSON.stringify(task));
+function editTask(editedTask){
+    localStorage.setItem(editedTask.id,JSON.stringify(editedTask) );
 }
 
 function removeTask(task_id){
@@ -47,14 +67,6 @@ function completeTask(taskId, isChecked){
 
     localStorage.setItem(taskId, JSON.stringify(task));
 
-}
-
-function setSelectedTask(task) {
-    localStorage.setItem('selected_task', JSON.stringify(task));
-}
-
-function getSelectedTask() {
-    return JSON.parse(localStorage.getItem('selected_task'));
 }
 
 function getAllTasks(location) {
@@ -92,5 +104,7 @@ function getAllTasks(location) {
 }
 
 
-export {saveTask, editTask, removeTask,removeProjectTasks, completeTask,
-     setSelectedTask, getSelectedTask, getAllTasks}
+export {
+    saveTask, editTask, removeTask,removeProjectTasks,
+    completeTask, setSelectedTaskId, getSelectedTaskId,
+    setSelectedTaskType, getSelectedTaskType, getAllTasks}
