@@ -1,6 +1,6 @@
 import { parseISO, startOfDay, startOfToday } from "date-fns";
 import isAfter from "date-fns/isAfter";
-import { updateUI } from "./viewController";
+import { getSelectedProject, updateUI } from "./viewController";
 
 function saveTask(task) {
 
@@ -25,7 +25,28 @@ function editTask(task){
 
 function removeTask(task_id){
     localStorage.removeItem(task_id);
-    updateUI
+    updateUI();
+}
+
+function removeProjectTasks(projectKey){
+    Object.keys(localStorage).forEach(key => {
+        if (!isNaN(key)) {
+            let task = JSON.parse(localStorage.getItem(key));
+            if (projectKey.includes(task.location)) {
+                localStorage.removeItem(key);
+            }
+        }
+    })
+}
+
+function completeTask(taskId, isChecked){
+
+    let task = JSON.parse(localStorage.getItem(taskId));
+
+    task.isChecked = isChecked;
+
+    localStorage.setItem(taskId, JSON.stringify(task));
+
 }
 
 function setSelectedTask(task) {
@@ -41,6 +62,7 @@ function getAllTasks(location) {
     let taskList = [];
     let dateString = new Date().toLocaleDateString('en-CA');
     let dateISO = startOfToday();
+    let selectedProject = getSelectedProject();
 
     if (localStorage.getItem("taskId")) {
 
@@ -57,7 +79,10 @@ function getAllTasks(location) {
                 if (location === 'Today' && !task.isChecked && task.date === dateString) {
                     taskList.push(task);
                 }
-                if (location === 'Inbox' && !task.isChecked && isAfter(taskDate, dateISO)) {
+                if (location === 'Upcoming' && !task.isChecked && isAfter(taskDate, dateISO)) {
+                    taskList.push(task);
+                }
+                if (location === 'Project' && !task.isChecked && task.location === selectedProject) {
                     taskList.push(task);
                 }
             }
@@ -67,4 +92,5 @@ function getAllTasks(location) {
 }
 
 
-export {saveTask, editTask, removeTask, setSelectedTask, getSelectedTask, getAllTasks}
+export {saveTask, editTask, removeTask,removeProjectTasks, completeTask,
+     setSelectedTask, getSelectedTask, getAllTasks}

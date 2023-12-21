@@ -1,8 +1,7 @@
 import completeTask from "./completeTask";
 import deleteIconSVG from './images/icon-delete.svg'
 import editIconSVG from './images/icon-edit.svg'
-import loadEditTask from "./editTask";
-import { updateUI } from "./viewController";
+import { updateUI, loadTaskDetails } from "../controllers/viewController";
 
 const addTaskDialog = document.getElementById('add-task-dialog'); 
 const confirmAddTask = document.getElementById('confirmButton-task');
@@ -83,7 +82,7 @@ export default function createTask(task) {
         console.log(e.target);
         confirmAddTask.dataset.id = task.id;
         confirmAddTask.dataset.type = 'edit';
-        loadEditTask(task);
+        loadTaskDetails(task);
         addTaskDialog.showModal();
     })
 

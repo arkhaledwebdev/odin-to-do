@@ -4,11 +4,10 @@ import html from "./template.html"
 import UpIcon from './images/icon-up.svg';
 import DownIcon from './images/icon-down.svg';
 
-import { loadInbox } from './inboxView'
-import Task from './task'
-import saveTask from './saveTask'
-import { clearSelection, getAreProjectsHidden, setAreProjectsHidden, setSelectedView, updateUI } from './viewController'
-import { saveProject, editProject } from './saveProject'
+import { saveTask } from './controllers/taskController';
+
+import { loadProjectSidebar, loadProjectsTitles, clearSelection, getAreProjectsHidden, setAreProjectsHidden, setSelectedView, updateUI } from './viewController'
+import { saveProject, editProject } from './controllers/projectController';
 import { loadProjectSidebar, loadProjectsTitles } from './projectView'
 import removeItem from './removeItem';
 
